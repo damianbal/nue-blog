@@ -19,4 +19,4 @@ How to install?
  * [Trumbowyg](https://alex-d.github.io/Trumbowyg/) WYSIWYG editor for Textareas
  * [RedBeanPHP](https://github.com/gabordemooij/redbean/) for Database Management
  * [Bootstrap 4](https://github.com/twbs/bootstrap) for styling
- * [Composer](https://github.com/composer/composer) to manage depedencies and autoloading
+ * [Composer](https://github.com/composer/composer) to manage dependencies and autoloading
