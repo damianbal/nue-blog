@@ -1,0 +1,33 @@
+body {
+    background: rgb(242,242,242);
+    color:rgb(100,100,100);
+}
+
+.muted {
+    color:rgb(130,130,130);
+}
+
+.content {
+    max-width: 980px !important;
+    background: rgb(252,252,252);
+
+    padding:12px;
+    border-top:1px solid rgba(0,0,0,0.1);
+}
+
+.nav-container {
+    max-width: 1010px !important;
+}
+
+.post-card {
+    margin-bottom: 4px !important;
+    border:none;
+    background: rgba(0,0,0,0.0);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    border-right: 1px solid rgba(0,0,0,0.05);
+    border-radius: 0;
+}
+.footer {
+    margin-top: 0.5rem;
+    font-size:12px;
+}

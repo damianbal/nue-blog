@@ -1,0 +1,121 @@
+{% extends "layouts/layout.twig" %}
+
+{% block title %} Admin CP {% endblock %}
+
+{% block side %}
+
+<nav class="nav flex-column nav-fill">
+    <a class="nav-link" href="index.php?route=auth.sign_out"><i class="fa fa-sign-out"></i> Sign out</a>
+
+</nav>
+
+{% endblock %}
+
+{% block content %}
+
+{% include "modals/add_post.twig" %}
+{% include "modals/add_page.twig" %}
+
+<a class="btn btn-sm btn-outline-dark" href="index.php">< Back to Blog</a>
+
+<br><br>
+
+<h3>Admin Control Panel</h3>
+<p class="muted">You can manage your blog here, add/remove pages, posts, etc...</p>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-expanded="true"><i class="fa fa-cog"></i> Settings</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pages-tab" data-toggle="tab" href="#pages" role="tab" aria-controls="profile"><i class="fa fa-file-text-o" aria-hidden="true"></i> Pages</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="profile"><i class="fa fa-file-text-o" aria-hidden="true"></i> Posts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="theme-tab" data-toggle="tab" href="#theme" role="tab" aria-controls="theme"><i class="fa fa-paint-brush" aria-hidden="true"></i> Theme</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+<div class="tab-pane fade show active p-2 bg-white" id="theme" role="tabpanel" aria-labelledby="theme-tab">
+    <form method="POST" action="index.php?route=admin.update_theme">
+        <div class="form-group">
+          <textarea id="editTheme" name="css" class="form-control" placeholder="...">{{ settings.get('styles') }}</textarea>
+        </div>
+
+        <button type="submit" class="btn btn-outline-primary">Update</button>
+    </form>
+</div>
+  <div class="tab-pane fade show active p-2 bg-white" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <form method="POST" action="index.php?route=admin.update_settings">
+        <div class="form-group">
+          <label for="blog_title">Blog title</label>
+          <input name="blog_title" value="{{ settings.get('title') }}" type="text" class="form-control" id="blog_title" aria-describedby="blog_title" placeholder="Enter your blog's title">
+          <small id="emailHelp" class="form-text text-muted">Title will be used in navigation</small>
+        </div>
+        <div class="form-group">
+            <label for="admin_pass">Admin password</label>
+            <input name="admin_pass" value="{{ settings.get('admin_pass') }}" type="password" class="form-control" id="admin_pass" aria-describedby="admin_pass" placeholder="pass">
+            <small class="form-text text-muted">Password is used to sign in to Admin CP</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+      </form>
+  </div>
+
+  <div class="tab-pane fade p-2 bg-white" id="pages" role="tabpanel" aria-labelledby="pages-tab">
+      <table class="table table-hover table-sm">
+          <thead>
+              <th>#</th>
+              <th>Title</th>
+              <th>Manage</th>
+          </thead>
+
+          <tbody>
+              {% for page in pages %}
+                <tr>
+                    <th scope="row">{{ page.get('id') }}</th>
+                    <td>{{ page.get('title') }}</td>
+                    <td class="text-right">
+                        <a href="index.php?route=post.show&id={{ page.get('id') }}" class="btn btn-sm btn-outline-dark">Show</a>
+                        <a href="index.php?route=post.edit_show&id={{ page.get('id') }}" class="btn btn-sm btn-outline-dark"><i class="fa fa-pencil"></i> Edit</a>
+                        <a href="index.php?route=post.remove&id={{ page.get('id') }}" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i> Remove</a>
+                    </td>
+                </tr>
+              {% endfor %}
+          </tbody>
+      </table>
+
+      <div>
+          <button data-toggle="modal" data-target="#addPageModal" class="btn btn-outline-primary">Add page</button>
+      </div>
+  </div>
+
+  <div class="tab-pane fade p-2 bg-white" id="posts" role="tabpanel" aria-labelledby="posts-tab">
+      <table class="table table-hover table-sm">
+          <thead>
+              <th>#</th>
+              <th>Title</th>
+              <th>Manage</th>
+          </thead>
+
+          <tbody>
+              {% for post in posts %}
+                <tr>
+                    <th scope="row">{{ post.get('id') }}</th>
+                    <td>{{ post.get('title') }}</td>
+                    <td class="text-right">
+                        <a href="index.php?route=post.show&id={{ post.get('id') }}" class="btn btn-sm btn-outline-dark">Show</a>
+                        <a href="index.php?route=post.edit_show&id={{ post.get('id') }}" class="btn btn-sm btn-outline-dark"><i class="fa fa-pencil"></i> Edit</a>
+                        <a href="index.php?route=post.remove&id={{ post.get('id') }}" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i> Remove</a>
+                    </td>
+                </tr>
+              {% endfor %}
+          </tbody>
+      </table>
+      <div>
+          <button data-toggle="modal" data-target="#addPostModal" class="btn btn-outline-primary">Add post</button>
+      </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "layouts/layout.twig" %}
+
+{% block title %} Edit {% if post.get('is_page') == true %} page {% else %} post {% endif %} #{{ post.get('id') }} {% endblock %}
+
+{% block content %}
+
+<a class="btn btn-sm btn-outline-dark" href="index.php?route=admin.index">< Back to Admin CP</a>
+
+<br>
+<br>
+
+<h4>Editing {% if post.get('is_page') == true %} page {% else %} post {% endif %}</h4>
+<p class="text-muted">ID of this {% if post.get('is_page') == true %} page {% else %} post {% endif %}: {{ post.get('id') }}</p>
+
+<form method="POST" action="index.php?route=post.edit">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Title</label>
+      <input value="{{ post.get('title') }}" name="title" type="text" class="form-control" placeholder="Enter new title of {% if post.get('is_page') == true %} page {% else %} post {% endif %}">
+    </div>
+
+    <div class="form-group">
+      <textarea id="editPost" name="content" class="form-control" placeholder="...">{{ post.get('content') }}</textarea>
+    </div>
+
+    <input type="hidden" value="{{ post.get('id') }}" name="id">
+
+    <button type="submit" class="btn btn-outline-primary">Update</button>
+</form>
+
+{% endblock %}

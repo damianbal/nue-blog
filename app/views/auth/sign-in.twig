@@ -1,0 +1,21 @@
+{% extends "layouts/layout.twig" %}
+
+{% block title %} Sign in {% endblock %}
+
+
+{% block content %}
+
+    <p class="muted">Use that page to sign in as <span class="badge badge-danger">administrator</span></p>
+
+    <form action="index.php?route=auth.do_auth" method="POST" style="width:50%;">
+  <div class="form-group" >
+    <label for="pass">Password</label>
+    <input name="password" type="password" class="form-control" id="pass" placeholder="Password">
+  </div>
+
+  <button type="submit" class="btn btn-secondary">Sign in as Administrator</button>
+</form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+<div class="modal fade" id="addPageModal" tabindex="-1" role="dialog" aria-labelledby="addPageModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addPostModalTitle">Add page</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+          <form method="POST" action="index.php?route=post.add">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Title</label>
+                <input name="post_title" type="text" class="form-control" placeholder="Enter title of page">
+              </div>
+
+              <div class="form-group">
+                <label for="exampleInputEmail1"></label>
+                <textarea name="post_content" class="form-control" placeholder="..."></textarea>
+              </div>
+
+              <input type="hidden" name="is_page" value="1">
+
+              <button type="submit" class="btn btn-primary">Add</button>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

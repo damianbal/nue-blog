@@ -1,0 +1,40 @@
+{% extends "layouts/layout.twig" %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+
+    {% for post in posts %}
+
+    <div class="card post-card">
+      <div class="card-body">
+        <h4 class="card-title">{{ post.get('title') }}</h4>
+        <p class="text-muted" style="font-size:11px;">
+            Posted: {{ post.get('created_at') }}
+        </p>
+        <p class="card-text muted">{{ post.get('content')[0:150] ~ '...' }}</p>
+
+        <a href="index.php?route=post.show&id={{ post.get('id') }}" class="btn btn-sm btn-link">Read</a>
+      </div>
+    </div>
+
+    {% endfor %}
+
+{% endblock %}
+
+{% block side %}
+
+
+    <nav class="nav flex-column">
+        {% for page in pages %}
+            <a class="nav-link" href="index.php?route=post.show&id={{ page.get('id') }}">{{ page.get('title') }}</a>
+        {% endfor %}
+
+        {% if admin %}
+            <a class="nav-link" href="index.php?route=admin.index">Admin CP</a>
+            <a class="nav-link" href="index.php?route=auth.sign_out">Sign out</a>
+        {% endif %}
+    </nav>
+
+
+{% endblock %}

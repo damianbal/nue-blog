@@ -1,0 +1,38 @@
+{% extends "layouts/layout.twig" %}
+
+{% block title %} {{ post.get('title') }} {% endblock %}
+
+{% block side %}
+
+<div class="card">
+  <div class="card-body">
+      <h5 class="card-title">Statistics</h5>
+
+    <p class="card-text muted" style="font-size:11px;">{{ post.get('views') }} views</p>
+
+    {% if date(post.get('created_at')) != date(post.get('updated_at')) %}
+    <p class="card-text muted" style="font-size:11px;"><strong>Updated</strong></p>
+    <p class="card-text muted" style="font-size:11px;">{{ post.get('updated_at')|date('D/M/y') }} </p>
+
+
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">{{ post.get('title') }}</h4>
+    {% if post.get('is_page') == false %}
+    <p class="text-muted" style="font-size:11px;">
+        Posted: {{ post.get('created_at') }}
+    </p>
+    {% endif %}
+    <p class="card-text muted">{{ post.get('content')|raw }}</p>
+  </div>
+</div>
+
+{% endblock %}
